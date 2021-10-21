@@ -1,5 +1,5 @@
 ﻿using System;
-namespace KthToLast
+namespace PracticeExercise2
 {
 
         public class LinkedListNode<T>
@@ -176,6 +176,8 @@ namespace KthToLast
                     newNode.Next = currentNode;
                     prevNode.Next = newNode;
                 }
+                index++;
+                currentNode = currentNode.Next;
             }
 
             public void Prepend(T item)
