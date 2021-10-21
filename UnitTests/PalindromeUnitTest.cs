@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Palindrome;
 using System;
+using System.Collections.Generic;
 
 namespace Palindrome
 {
@@ -10,7 +11,7 @@ namespace Palindrome
         [TestMethod]
         public void OneInt()
         {
-            DoublyLinkedList<int> doublyLinkedList = new DoublyLinkedList<int>();
+            DoublyLinkedList<int> doublyLinkedList = new LinkedList.DoublyLinkedList<int>();
             doublyLinkedList.Append(0);
             Assert.IsTrue(Program.IsPalindrome(doublyLinkedList));
         }
