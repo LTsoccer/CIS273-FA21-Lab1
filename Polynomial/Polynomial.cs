@@ -127,6 +127,46 @@ namespace Polynomial
             return product;
         }
 
+        public static Polynomial Divide(Polynomial p1, Polynomial p2)
+        {
+            Polynomial quotient = new Polynomial();
+            if (p2.ToString() == "0")
+            {
+                return quotient;
+            }
+            if (p1.terms.First.Value.Power >= p2.terms.First.Value.Power)
+            {
+                if (p1.terms.First.Value.Coefficient >= p2.terms.First.Value.Coefficient)
+                {
+                    // Add all terms from p1 to sum
+                    var dividingco = p1.terms.First.Value.Coefficient / p2.terms.First.Value.Coefficient;
+                    var dividingpow = p1.terms.First.Value.Power - p2.terms.First.Value.Power;
+                    Term term1 = new Term((int)dividingco, dividingpow);
+                    Polynomial poly1 = new Polynomial();
+                    poly1.AddTerm(term1.Coefficient, term1.Power);
+                    var subtract = Polynomial.Multiply(poly1, p2);
+                    var quotient1 = Polynomial.Add(p1, subtract);
+                    if (quotient1.terms.First.Value.Power >= p2.terms.First.Value.Power)
+                    {
+                        if (quotient1.terms.First.Value.Coefficient >= p2.terms.First.Value.Coefficient)
+                        {
+                            quotient.AddTerm(term1.Coefficient, term1.Power);
+                            Polynomial.Divide(quotient1, p2);
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            return quotient;
+        }
+
         public override string ToString()
         {
             if (terms.Count == 0)
@@ -138,6 +178,10 @@ namespace Polynomial
             foreach( Term t in terms)
             {
                 result += "+" + t.ToString();
+            }
+            if (result[0] == '+')
+            {
+                result = result.Substring(1);
             }
 
             return result;
