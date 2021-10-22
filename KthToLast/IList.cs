@@ -38,5 +38,8 @@ namespace KthToLast
 
         // TODO
         IList<T> Reverse();
+
+        // TODO
+        T KthToLast(int k);
     }
 }

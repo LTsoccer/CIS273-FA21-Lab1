@@ -391,5 +391,10 @@ namespace KthToLast
                 return currentNode.Data;
             }
         }
+
+        public T KthToLast(int k)
+        {
+            throw new NotImplementedException();
+        }
     }
     }
