@@ -114,7 +114,7 @@ namespace Polynomial
 
             Term term2 = new Term(0, 3);
             polynomial.AddTerm(term2.Coefficient, term2.Power);
-            Assert.AreEqual("5.1", polynomial.ToString().Substring(0,3));
+            Assert.AreEqual("5.1", polynomial.ToString().Substring(1,3));
         }
 
         [TestMethod]

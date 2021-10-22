@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PracticeExercise2
+namespace KthToLast
 {
 
         public class LinkedListNode<T>
@@ -175,9 +175,9 @@ namespace PracticeExercise2
                     }
                     newNode.Next = currentNode;
                     prevNode.Next = newNode;
-                }
                 index++;
                 currentNode = currentNode.Next;
+            }
             }
 
             public void Prepend(T item)
@@ -369,7 +369,27 @@ namespace PracticeExercise2
 
         public T KthToLast(int k)
         {
-            throw new NotImplementedException();
+            if (IsEmpty)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else if (k == 0)
+            {
+                return Tail.Data;
+            }
+            else if (k == Length)
+            {
+                return Head.Data;
+            }
+            else
+            {
+                var currentNode = Head;
+                for (int i = 1; i < (Length - k); i++)
+                {
+                    currentNode = currentNode.Next;
+                }
+                return currentNode.Data;
+            }
         }
     }
     }

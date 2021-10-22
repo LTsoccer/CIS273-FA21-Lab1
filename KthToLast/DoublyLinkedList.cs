@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PracticeExercise3
+namespace KthToLast
 {
 
     public class DoublyLinkedListNode<T>
@@ -335,7 +335,19 @@ namespace PracticeExercise3
 
         public T KthToLast(int k)
         {
-            throw new NotImplementedException();
+            if (IsEmpty)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                var currentNode = Tail;
+                for (int i = Length; i > (Length - k); i--)
+                {
+                    currentNode = currentNode.Prev;
+                }
+                return currentNode.Data;
+            }
         }
         }
     }

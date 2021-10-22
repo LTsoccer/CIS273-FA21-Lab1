@@ -35,6 +35,10 @@ namespace Polynomial
                     if (currentNode.Value.Power == term.Power)
                     {
                         currentNode.Value.Coefficient += term.Coefficient;
+                        if (currentNode.Value.Coefficient == 0)
+                        {
+                            terms.Remove(currentNode);
+                        }
                         return;
                     }
 
@@ -56,6 +60,7 @@ namespace Polynomial
                 }
             }
         }
+       
 
 
         public static Polynomial Add(Polynomial p1, Polynomial p2)
@@ -79,21 +84,55 @@ namespace Polynomial
 
         public static Polynomial Subtract(Polynomial p1, Polynomial p2)
         {
-            return null;
+            Polynomial difference = new Polynomial();
+
+            // Add all terms from p1 to sum
+            foreach (Term t in p1.terms)
+            {
+                difference.AddTerm(t.Coefficient, t.Power);
+            }
+
+            foreach (Term t in p2.terms)
+            {
+                difference.AddTerm(0 - t.Coefficient, t.Power);
+            }
+
+            return difference;
         }
 
         public static Polynomial Negate(Polynomial p)
         {
-            return null;
+            Polynomial negate = new Polynomial();
+            foreach (Term t in p.terms)
+            {
+                negate.AddTerm(0 - t.Coefficient, t.Power);
+            }
+            return negate;
         }
 
         public static Polynomial Multiply(Polynomial p1, Polynomial p2)
         {
-            return null;
+            Polynomial product = new Polynomial();
+
+            // Add all terms from p1 to sum
+            foreach (Term t in p1.terms)
+            {
+                foreach (Term t2 in p2.terms)
+                {
+                    product.AddTerm(t.Coefficient * t2.Coefficient, t.Power + t2.Power);
+                }
+            }
+
+
+            return product;
         }
 
         public override string ToString()
         {
+            if (terms.Count == 0)
+            {
+                return "0";
+            }
             string result = "";
 
             foreach( Term t in terms)
