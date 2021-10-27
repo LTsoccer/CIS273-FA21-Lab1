@@ -173,12 +173,15 @@ namespace Polynomial
             {
                 return "0";
             }
-            string result = "";
 
-            if(terms.Count == 0)
+            if (terms.Count == 1)
             {
-                return "0";
+                if (terms.First.Value.ToString()[0] == '0')
+                {
+                    return "0";
+                }
             }
+            string result = "";
 
             foreach( Term t in terms)
             {
